@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>
+        {% block title %}
+            My site
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="container">
+                <div class="navbar">
+                    <div class="nav-logo">
+                        <i>Logo</i>
+                    </div>
+                    <div class="nav-links">
+                        <ul>
+                            <li><a href="{% url 'home:home' %}">Home</a></li>
+                            <li><a href="{% url 'home:about' %}">About</a></li>
+                            <li><a href="{% url 'article:list' %}">Articles</a></li>
+                            <li><a href="{% url 'user:login' %}">Login</a></li>
+                            <li><a href="{% url 'user:register' %}">Register</a></li>
+                            <li><a href="{% url 'user:logout' %}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        {% block main %}
+            Nothing here
+        {% endblock main %}
+    </main>
+</body>
+</html>
