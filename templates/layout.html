@@ -23,10 +23,21 @@
                         <ul>
                             <li><a href="{% url 'home:home' %}">Home</a></li>
                             <li><a href="{% url 'home:about' %}">About</a></li>
-                            <li><a href="{% url 'article:list' %}">Articles</a></li>
-                            <li><a href="{% url 'user:login' %}">Login</a></li>
-                            <li><a href="{% url 'user:register' %}">Register</a></li>
-                            <li><a href="{% url 'user:logout' %}">Logout</a></li>
+
+                            {% if user.is_authenticated %}
+                                <div class="dropdown">
+                                    Article
+                                    <div class="dropdown-content">
+                                      <a href="{% url 'article:list' %}">Articles</a>
+                                      <a href="#">My articles</a>
+                                    </div>
+                                </div>
+                                <li><a href="{% url 'user:logout' %}">Logout</a></li>
+                                <li><a href="#">{{ user.username }}</a></li>
+                            {% else %}
+                                <li><a href="{% url 'user:login' %}">Login</a></li>
+                                <li><a href="{% url 'user:register' %}">Register</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -34,9 +45,11 @@
         </nav>
     </header>
     <main>
-        {% block main %}
-            Nothing here
-        {% endblock main %}
+        <div class="container">
+            {% block main %}
+                Nothing here
+            {% endblock main %}
+        </div>
     </main>
 </body>
 </html>

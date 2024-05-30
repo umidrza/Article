@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate, logout
+from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
@@ -15,6 +16,7 @@ def login_view(request):
         
         if user is not None:
             login(request, user)
+            messages.success(request, 'Successfull login')
             return redirect('home:home')
     
     context = { "form": form }
@@ -32,6 +34,7 @@ def register_view(request):
         new_user.save()
 
         login(request, new_user)
+        messages.success(request, 'Successfull login')  
 
         return redirect('home:home')
     

@@ -5,5 +5,16 @@
 {% endblock title %}
 
 {% block main %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success">{{message}}</div>
+            {% else %}
+                <div class="alert alert-warning">{{message}}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     <h1>Home</h1>
 {% endblock main %}
