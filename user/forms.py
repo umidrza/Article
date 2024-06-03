@@ -1,14 +1,14 @@
 from django import forms
 
 class LoginForm(forms.Form):
-    username = forms.CharField(max_length=30, label="İstifadəçi adı")
-    password = forms.CharField(max_length=10, label="Şifrə", widget=forms.PasswordInput)
+    username = forms.CharField(max_length=30, label="Username")
+    password = forms.CharField(max_length=10, label="Password", widget=forms.PasswordInput)
     
 
 class RegisterForm(forms.Form):
-    username = forms.CharField(max_length=30, label="İstifadəçi adı")
-    password = forms.CharField(max_length=10, label="Şifrə", widget=forms.PasswordInput)
-    confirm = forms.CharField(max_length=10, label="Şifrəni təsdiqlə", widget=forms.PasswordInput)
+    username = forms.CharField(max_length=30, label="Username")
+    password = forms.CharField(max_length=10, label="Password", widget=forms.PasswordInput)
+    confirm = forms.CharField(max_length=10, label="Confirm password", widget=forms.PasswordInput)
     
     def clean(self):
         username = self.cleaned_data["username"]
@@ -17,7 +17,7 @@ class RegisterForm(forms.Form):
         
         
         if password and confirm and password != confirm:
-            raise forms.ValidationError("Şifrələr eyni deyil!!")
+            raise forms.ValidationError("Passwords doesn't match!!")
         
         values = {
             "username": username,

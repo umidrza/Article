@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>
         {% block title %}
             My site
         {% endblock title %}
     </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
@@ -21,19 +22,13 @@
                     </div>
                     <div class="nav-links">
                         <ul>
-                            <li><a href="{% url 'home:home' %}">Home</a></li>
-                            <li><a href="{% url 'home:about' %}">About</a></li>
+                            <li><a href="{% url 'home' %}">Home</a></li>
+                            <li><a href="{% url 'about' %}">About</a></li>
 
                             {% if user.is_authenticated %}
-                                <div class="dropdown">
-                                    Article
-                                    <div class="dropdown-content">
-                                      <a href="{% url 'article:list' %}">Articles</a>
-                                      <a href="#">My articles</a>
-                                    </div>
-                                </div>
-                                <li><a href="{% url 'user:logout' %}">Logout</a></li>
-                                <li><a href="#">{{ user.username }}</a></li>
+                                <li><a href="{% url 'article:list' %}">Articles</a></li>
+                                <li><a href="{% url 'article:dashboard' %}"><i class="fa-regular fa-user"></i></a></li>
+                                <li><a href="{% url 'user:logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a></li>
                             {% else %}
                                 <li><a href="{% url 'user:login' %}">Login</a></li>
                                 <li><a href="{% url 'user:register' %}">Register</a></li>

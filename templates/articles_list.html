@@ -6,13 +6,14 @@
 
 {% block main %}
     <h1>Articles</h1>
+    <br>
 
     <ul>
         {% for article in articles %}
             <li>
+                <h3><a href="{% url 'article:detail' article.id %}">{{ article.title }}</a></h3>
                 <p>{{article.author}} | {{ article.created_date }}</p>
-                <h3>{{ article.title }}</h3>
-                <p>{{ article.content }}</p>
+                <br>
             </li>
         {% endfor %}
     </ul>

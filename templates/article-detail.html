@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Article Detail
+{% endblock title %}
+
+{% block main %}
+
+    {% if article.image %}
+        <img src="{{article.image.url}}" alt="">
+    {% endif %}
+    <p>{{article.author}} | {{ article.created_date }}</p>
+    <h2>{{ article.title }}</h2>
+    <p>{{ article.content|safe }}</p>
+{% endblock main %}

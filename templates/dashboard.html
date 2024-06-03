@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Articles
+{% endblock title %}
+
+{% block main %}
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success">{{message}}</div>
+            {% else %}
+                <div class="alert alert-warning">{{message}}</div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    <h1>My Articles</h1>
+    <a href="{% url 'article:create' %}">Create new Article</a>
+    <br><br>
+
+    <ul>
+        {% for article in articles %}
+            <li>
+                <h3><a href="{% url 'article:detail' article.id %}">{{ article.title }}</a></h3>
+                <p>{{ article.content|safe|truncatechars:50 }}</p>
+                <p>{{ article.created_date }}</p>
+                <a href="{% url 'article:update' article.id %}"><i class="fa-solid fa-pen"></i></a>
+                <a href="{% url 'article:delete' article.id %}"><i class="fa-solid fa-trash"></i></a>
+                <br>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

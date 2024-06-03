@@ -17,7 +17,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, 'Successfull login')
-            return redirect('home:home')
+            return redirect('home')
     
     context = { "form": form }
     return render(request, "login.html", context)
@@ -36,7 +36,7 @@ def register_view(request):
         login(request, new_user)
         messages.success(request, 'Successfull login')  
 
-        return redirect('home:home')
+        return redirect('home')
     
 
     context = { 'form': form }
@@ -46,4 +46,4 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect("home:home")
+    return redirect("home")
