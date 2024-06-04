@@ -10,4 +10,5 @@ urlpatterns = [
     path('create/', article_create, name='create'),
     path('update/<int:id>', article_update, name='update'),
     path('delete/<int:id>', article_delete, name='delete'),
+    path('comment-create/<int:id>', comment_create, name='comment-create'),
 ]
